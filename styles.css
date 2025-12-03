@@ -1,0 +1,357 @@
+:root {
+  --blue-1: #0077b6;
+  --blue-2: #0093d1;
+  --bg: #f6f8fa;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --radius: 12px;
+  --gap: 20px;
+  --max-width: 1200px;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+body { background: var(--bg); color: #111; }
+
+/* TOPBAR */
+.topbar {
+  background: linear-gradient(90deg, var(--blue-1), var(--blue-2));
+  color: white;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.brand { display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 1.2rem; }
+.logo-img { width: 50px; height: 50px; object-fit: contain; filter: brightness(100%); }
+.brand .bag { width: 34px; height: 34px; fill: white; opacity: 0.95; }
+.top-right { display: flex; gap: 12px; align-items: center; }
+.balance { font-weight: 600; }
+.btn {
+  background: white; border: none; padding: 8px 12px; border-radius: 10px; cursor: pointer; font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08); transition: background 0.2s;
+}
+.btn:hover { background: #f0f0f0; }
+.btn.ghost { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.2); }
+.btn.ghost:hover { background: rgba(255,255,255,0.1); }
+.btn.primary { background: var(--blue-1); color: white; border: none; }
+
+/* CATEGORY BAR */
+.category-bar { background: #dff4fb; padding: 14px 10px; box-shadow: inset 0 -1px 0 rgba(0,0,0,0.03); }
+.category-wrap { max-width: var(--max-width); margin: 0 auto; display: flex; gap: 10px; overflow: auto; padding: 6px 6px; justify-content: center;}
+.category-btn {
+  background: white; border: 1px solid var(--blue-1); color: var(--blue-1); padding: 8px 14px; border-radius: 20px; cursor: pointer; white-space: nowrap; transition: all 0.2s;
+}
+.category-btn:hover { background: var(--blue-1); color: white; }
+.category-btn.active { background: var(--blue-1); color: white; border-color: var(--blue-1); }
+
+/* MAIN GRID */
+main { max-width: var(--max-width); margin: 26px auto; padding: 0 16px; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--gap);
+  align-items: start;
+}
+
+/* PRODUCT CARD */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(13,38,59,0.06);
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  display: flex; flex-direction: column;
+}
+.card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(13,38,59,0.09); }
+.card .imgwrap { height: 170px; overflow: hidden; background: #f2f4f7; display: flex; align-items: center; justify-content: center; }
+.card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card .body { padding: 14px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.card h4 { margin: 0; font-size: 1.05rem; }
+.price { font-weight: 700; color: var(--blue-1); }
+.card .actions { margin-top: auto; display: flex; gap: 8px; }
+.card button { flex: 1; padding: 8px; border-radius: 8px; border: none; cursor: pointer; transition: background 0.2s; }
+.add-btn { background: var(--blue-1); color: white; }
+.add-btn:hover { background: var(--blue-2); }
+.info-btn { background: #eef6fb; border: 1px solid rgba(0,0,0,0.06); color: var(--muted); }
+.info-btn:hover { background: #e0f0ff; }
+
+/* MODAL */
+.modal { display: none; position: fixed; inset: 0; background: rgba(2,6,23,0.5); z-index: 50; align-items: center; justify-content: center; padding: 20px; }
+.modal-panel { width: 100%; max-width: 680px; background: white; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; max-height: 90vh; }
+.modal-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; border-bottom: 1px solid #f1f1f1; }
+.modal-body { padding: 14px 18px; overflow: auto; }
+.modal-footer { padding: 14px 18px; border-top: 1px solid #f1f1f1; display: flex; flex-direction: column; gap: 12px; }
+.close { background: transparent; border: none; font-size: 1.5rem; cursor: pointer; }
+.select { padding: 8px; border-radius: 8px; border: 1px solid #ddd; }
+
+/* cart item style */
+.cart-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px dashed #f0f0f0; }
+.cart-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
+.qty-controls { display: flex; gap: 6px; align-items: center; }
+.small-btn { padding: 6px 8px; border-radius: 6px; border: 1px solid #ddd; background: #fff; cursor: pointer; transition: background 0.2s; }
+.small-btn:hover { background: #f0f0f0; }
+
+/* HISTORY */
+.history-item { padding: 8px 0; border-bottom: 1px solid #f4f4f4; }
+
+/* FOOTER */
+.footer { text-align: center; padding: 18px; color: #6b7280; margin-top: 30px; }
+
+/* TOAST */
+#simple-toast {
+  position: fixed; right: 20px; bottom: 20px; background: rgba(0,0,0,0.8); color: white; padding: 10px 14px; border-radius: 8px; z-index: 60; opacity: 0; transition: opacity 0.3s;
+}
+
+.input-field {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+}
+.input-field:focus {
+  outline: none;
+  border-color: var(--blue-1);
+  box-shadow: 0 0 4px rgba(0, 119, 182, 0.3);
+}
+
+/* ========== RESPONSIVE MOBILE OPTIMIZATION ========== */
+
+/* Untuk tablet kecil */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  h4 {
+    font-size: 1rem;
+  }
+  
+  .price {
+    font-size: 1.1rem;
+  }
+}
+
+/* Untuk HP ukuran sedang */
+@media (max-width: 600px) {
+  .brand { 
+    font-size: 1.1rem; 
+  }
+  
+  .top-right { 
+    gap: 8px; 
+  }
+  
+  .grid { 
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+  }
+  
+  .modal {
+    padding: 10px;
+  }
+}
+
+/* Untuk HP kecil (mobile optimization utama) */
+@media (max-width: 480px) {
+  /* Topbar lebih kompak */
+  .topbar {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+  }
+  
+  .brand {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  
+  .top-right {
+    width: 100%;
+    justify-content: space-between;
+    order: 3;
+    margin-top: 8px;
+  }
+  
+  /* Tombol lebih besar untuk touch */
+  .btn {
+    padding: 10px 14px;
+    min-height: 44px; /* Ukuran touch minimum */
+  }
+  
+  /* Grid produk 2 kolom di HP kecil */
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  /* Kartu produk lebih sederhana */
+  .card .imgwrap {
+    height: 140px;
+  }
+  
+  .card h4 {
+    font-size: 0.95rem;
+  }
+  
+  .card .actions {
+    flex-direction: column;
+  }
+  
+  .card button {
+    min-height: 40px;
+    font-size: 0.9rem;
+  }
+  
+  /* Modal full screen di mobile */
+  .modal {
+    padding: 0;
+    align-items: flex-end;
+  }
+  
+  .modal-panel {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: 16px 16px 0 0;
+  }
+  
+  /* Item keranjang lebih vertikal */
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 0;
+  }
+  
+  .cart-item img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 8px;
+  }
+  
+  /* Input form lebih besar */
+  .input-field {
+    padding: 12px;
+    font-size: 16px; /* Mencegah zoom di iOS */
+  }
+  
+  /* Category bar lebih mudah di-scroll */
+  .category-wrap {
+    justify-content: flex-start;
+    padding: 4px 8px;
+  }
+  
+  .category-btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+  
+  /* Footer lebih kecil */
+  .footer {
+    padding: 14px;
+    font-size: 0.9rem;
+  }
+  
+  /* Toast di mobile */
+  #simple-toast {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    text-align: center;
+  }
+}
+
+/* Untuk HP sangat kecil */
+@media (max-width: 360px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .top-right {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .balance {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  
+  /* Tombol dalam satu baris */
+  .card .actions {
+    flex-direction: row; /* Kembali ke horizontal untuk lebar penuh */
+  }
+}
+
+/* Perbaikan umum untuk touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .card:hover {
+    transform: none; /* Hapus hover effect di touch device */
+  }
+  
+  .btn, .category-btn, .card button {
+    cursor: default;
+  }
+  
+  /* Tambahkan visual feedback untuk touch */
+  .btn:active, .category-btn:active, .card button:active,
+  .small-btn:active {
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+  
+  /* Hover effect tidak berlaku di touch */
+  .btn:hover, .category-btn:hover, .card button:hover,
+  .small-btn:hover {
+    background: inherit;
+  }
+  
+  .btn.ghost:hover {
+    background: transparent;
+  }
+  
+  .btn.primary:hover {
+    background: var(--blue-1);
+  }
+  
+  .add-btn:hover {
+    background: var(--blue-1);
+  }
+  
+  .info-btn:hover {
+    background: #eef6fb;
+  }
+}
+
+/* Untuk landscape mode di mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .modal-panel {
+    max-height: 95vh;
+  }
+  
+  .card .imgwrap {
+    height: 120px;
+  }
+}
+
+/* Dukungan untuk iPhone notch/safe areas */
+@supports (padding: max(0px)) {
+  .topbar {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-top: max(12px, env(safe-area-inset-top));
+  }
+  
+  .footer {
+    padding-bottom: max(18px, env(safe-area-inset-bottom));
+  }
+  
+  .modal-panel {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

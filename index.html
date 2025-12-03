@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BUYLO - Belanja Seru</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="https://via.placeholder.com/50x50?text=BUYLO" class="logo-img" alt="BUYLO" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMDA3N2I2Ii8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zNWVtIj5CVVlMTzwvdGV4dD4KPHN2Zz4=';">
+      BUYLO
+    </div>
+    <div class="top-right">
+      <div class="balance">Saldo: Rp <span id="balance-amount">0</span></div>
+      <button id="cart-btn" class="btn">Keranjang (<span id="cart-count">0</span>)</button>
+      <button id="history-btn" class="btn ghost">Riwayat</button>
+    </div>
+  </header>
+
+  <nav class="category-bar">
+    <div class="category-wrap">
+      <button class="category-btn active" data-category="all">Semua</button>
+      <button class="category-btn" data-category="fashion">Fashion</button>
+      <button class="category-btn" data-category="elektronik">Elektronik</button>
+      <button class="category-btn" data-category="rumah-tangga">Rumah Tangga</button>
+      <button class="category-btn" data-category="pribadi">Pribadi</button>
+      <button class="category-btn" data-category="dapur">Dapur</button>
+    </div>
+  </nav>
+
+  <main>
+    <section id="products" class="grid"></section>
+  </main>
+
+  <!-- CART MODAL -->
+<div id="cart-modal" class="modal">
+  <div class="modal-panel">
+    <header class="modal-header">
+      <h3>Keranjang Belanja</h3>
+      <button class="close" onclick="closeCart()">×</button>
+    </header>
+    <div id="cart-items" class="modal-body"></div>
+    <div class="modal-footer">
+      <div id="cart-total">Total: Rp 0</div>
+      <label for="payment-method">Metode Pembayaran</label>
+      <select id="payment-method" class="select">
+        <option value="QRIS">QRIS</option>
+        <option value="DANA">DANA</option>
+        <option value="COD">COD</option>
+      </select>
+      <!-- Tambahkan form input nama dan alamat -->
+      <label for="customer-name">Nama Lengkap</label>
+      <input type="text" id="customer-name" class="input-field" placeholder="Masukkan nama lengkap" required>
+      <label for="customer-address">Alamat Lengkap</label>
+      <textarea id="customer-address" class="input-field" placeholder="Masukkan alamat lengkap" rows="3" required></textarea>
+      <div class="modal-actions">
+        <button class="btn primary" onclick="checkout()">Checkout</button>
+        <button class="btn ghost" onclick="closeCart()">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- HISTORY MODAL -->
+  <div id="history-modal" class="modal">
+    <div class="modal-panel">
+      <header class="modal-header">
+        <h3>Riwayat Belanja</h3>
+        <button class="close" onclick="closeHistory()">×</button>
+      </header>
+      <div id="history-list" class="modal-body"></div>
+      <div class="modal-footer">
+        <button class="btn ghost" onclick="clearHistory()">Hapus Riwayat</button>
+        <button class="btn" onclick="closeHistory()">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    &copy; <span id="year"></span> BUYLO — Belanja seru & aman
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
